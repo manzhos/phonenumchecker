@@ -9,7 +9,6 @@ export class PhoneForm extends Component {
       code: ''
     };
 
-    // this.handleChange = this.handleChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
