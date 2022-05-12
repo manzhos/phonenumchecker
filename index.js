@@ -1,9 +1,9 @@
 const express = require('express')
-const index   = express()
+const app   = express()
 
 const port       = process.env.PORT || 5000
 
-index.get('/', (req, res)=>{
+app.get('/', (req, res)=>{
     res.status(200).send({
         message: "You are on Homepage",
         info: {
@@ -13,7 +13,7 @@ index.get('/', (req, res)=>{
     })
 })
 
-index.listen(port,() => {
+app.listen(port,() => {
 	// createService();
 	console.warn(`The app has been started on port: ${port}`)
 });
