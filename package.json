@@ -7,9 +7,8 @@
     "node": "16.x"
   },
   "scripts": {
-    "start" : "node index.js",
-    "server": "node index.js",
-    "dev"   : "npm run server"
+    "start":"node index.js",
+    "test": "echo \"Error\" && exit 1"
   },
   "keywords": [
     "twilio",
