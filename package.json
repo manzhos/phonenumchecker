@@ -2,13 +2,13 @@
   "name": "numchecker",
   "version": "1.0.0",
   "description": "Check phone number with SMS -- Twillio",
-  "main": "app.js",
+  "main": "index.js",
   "engines":{
     "node": "16.x"
   },
   "scripts": {
-    "start" : "node app.js",
-    "server": "node app.js",
+    "start" : "node index.js",
+    "server": "node index.js",
     "dev"   : "npm run server"
   },
   "keywords": [
