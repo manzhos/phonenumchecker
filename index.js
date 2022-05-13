@@ -25,5 +25,5 @@ app.get('/home', (req, res)=>{
 
 app.listen(port,() => {
 	// createService();
-	console.warn(`The app has been started on port: ${port}`)
+	console.log(`The app has been started on port: ${port}`)
 });
