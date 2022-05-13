@@ -20,13 +20,13 @@ app.get('/', (req, res)=>{
 // Phone Endpoint
 app.get('/phone', (req,res) => {
   if (req.query.phonenumber) {
-    console.log('Sending the code to phone with entered number');
-      client.verify.services(serviceSid).verifications
-        .create({
-           to: `+${req.query.phonenumber}`,
-           channel: 'sms' // req.query.channel==='call' ? 'call' : 'sms'
-        })
-        .then(verification => console.log(verification.status))
+    res.status(400).send({message: "I have your phone number :)", phonenumber: req.query.phonenumber})
+      // client.verify.services(serviceSid).verifications
+      //   .create({
+      //      to: `+${req.query.phonenumber}`,
+      //      channel: 'sms' // req.query.channel==='call' ? 'call' : 'sms'
+      //   })
+      //   .then(verification => console.log(verification.status))
   } else {
     res.status(400).send({message: "Wrong phone number :(", phonenumber: req.query.phonenumber})
   }
@@ -34,9 +34,7 @@ app.get('/phone', (req,res) => {
 
 // Verify Endpoint
 app.get('/verify', (req, res) => {
-	console.log('Sending the code to phone with entered number', req.query.phonenumber, req.query.code);
     if (req.query.phonenumber && (req.query.code).length === 6) {
-		console.log('Sending the code to phone with entered number');
         client.verify.services(serviceSid).verificationChecks
             .create({
                 to: `+${req.query.phonenumber}`,
