@@ -20,13 +20,13 @@ app.get('/', (req, res)=>{
 // Phone Endpoint
 app.get('/phone', (req,res) => {
   if (req.query.phonenumber) {
-    res.status(400).send({message: "I have your phone number :)", phonenumber: req.query.phonenumber})
-      // client.verify.services(serviceSid).verifications
-      //   .create({
-      //      to: `+${req.query.phonenumber}`,
-      //      channel: 'sms' // req.query.channel==='call' ? 'call' : 'sms'
-      //   })
-      //   .then(verification => console.log(verification.status))
+      // res.status(400).send({message: "I have your phone number :)", phonenumber: req.query.phonenumber})
+      client.verify.services(serviceSid).verifications
+        .create({
+           to: `+${req.query.phonenumber}`,
+           channel: 'sms' // req.query.channel==='call' ? 'call' : 'sms'
+        })
+        .then(verification => console.log(verification.status))
   } else {
     res.status(400).send({message: "Wrong phone number :(", phonenumber: req.query.phonenumber})
   }
