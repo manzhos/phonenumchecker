@@ -4,5 +4,8 @@
   "dependencies": {
     "express": "^4.18.1",
     "vercel": "latest"
+  },
+  "devDependencies": {
+    "twilio": "^3.77.0"
   }
 }
