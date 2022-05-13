@@ -11,7 +11,7 @@ app.get('/', (req, res)=>{
   res.status(200).send({
     message: "You are on Homepage",
     info: {
-      phone: "Send verification code through /phone . It contains two params i.e. phonenumber and channel(sms/call)",
+      phone: "Send verification code through /phone . It contains param phonenumber",
       verify: "Verify the recieved code through /verify . It contains two params i.e. phonenumber and code"
     }
   })
@@ -34,7 +34,7 @@ app.get('/phone', (req,res) => {
 
 // Verify Endpoint
 app.get('/verify', (req, res) => {
-    if (req.query.phonenumber && (req.query.code).length === 6) {
+    if (req.query.phonenumber && req.query.code && (req.query.code).length === 6) {
         client.verify.services(serviceSid).verificationChecks
             .create({
                 to: `+${req.query.phonenumber}`,
