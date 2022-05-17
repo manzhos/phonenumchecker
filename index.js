@@ -22,10 +22,7 @@ app.get('/phone', (req,res) => {
   if (req.query.phonenumber) {
       // res.status(400).send({message: "I have your phone number :)", phonenumber: req.query.phonenumber})
       client.verify.services(serviceSid).verifications
-        .create({
-           to: `+${req.query.phonenumber}`,
-           channel: 'sms' // req.query.channel==='call' ? 'call' : 'sms'
-        })
+        .create({ to: `${req.query.phonenumber}`, channel: 'sms' })
         .then(verification => console.log(verification.status))
   } else {
     res.status(400).send({message: "Wrong phone number :(", phonenumber: req.query.phonenumber})
@@ -36,18 +33,8 @@ app.get('/phone', (req,res) => {
 app.get('/verify', (req, res) => {
     if (req.query.phonenumber && req.query.code && (req.query.code).length === 6) {
         client.verify.services(serviceSid).verificationChecks
-            .create({
-                to: `+${req.query.phonenumber}`,
-                code: req.query.code
-            })
-            .then(data => {
-                if (data.status === "approved") {
-                    res.status(200).send({
-                        message: "User is Verified!",
-                        data
-                    })
-                }
-            })
+          .create({ to: `${req.query.phonenumber}`, code: req.query.code })
+          .then(verification_check => console.log(verification_check.status));
     } else {
         res.status(400).send({ message: "Wrong phone number or code :(", phonenumber: req.query.phonenumber, data })
     }
