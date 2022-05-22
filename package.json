@@ -20,6 +20,7 @@
   "author": "vladimir manzhos <manzhos@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.26.1",
     "config": "^3.3.7",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",

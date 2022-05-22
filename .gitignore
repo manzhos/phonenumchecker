@@ -1,6 +1,4 @@
 /node_modules/
 /client/node_modules/
 .env
-vercel.json
 
-.vercel
