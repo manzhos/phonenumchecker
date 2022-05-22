@@ -1,11 +1,32 @@
 {
   "name": "numchecker",
-  "packageManager": "yarn@3.2.0",
+  "version": "1.0.0",
+  "description": "Check phone number with SMS -- Twillio",
+  "main": "app.js",
+  "engines": {
+    "node": "16.x"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "server": "nodemon app.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "keywords": [
+    "twilio",
+    "validate",
+    "sms"
+  ],
+  "author": "vladimir manzhos <manzhos@gmail.com>",
+  "license": "ISC",
   "dependencies": {
+    "config": "^3.3.7",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
-    "vercel": "latest"
+    "twilio": "^3.77.1"
   },
   "devDependencies": {
-    "twilio": "^3.77.0"
+    "concurrently": "^7.1.0",
+    "nodemon": "^2.0.16"
   }
 }
