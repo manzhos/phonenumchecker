@@ -1,9 +1,9 @@
 require('dotenv').config();
 
 const express = require('express')
-const app  = express()
+const app = express()
 
-const port       = process.env.PORT
+const port = process.env.PORT
 // const accountSid = process.env.TWILIO_ACCOUNT_SID
 // const serviceSid = process.env.TWILIO_SERVICE_SID
 // const authToken  = process.env.TWILIO_AUTH_TOKEN
@@ -13,14 +13,11 @@ app.get('/', (req, res)=>{
   res.status(200).send({
     message: "You are on Homepage",
     info: {
-      phone: "Send verification code through /phone . It contains param phonenumber",
-      verify: "Verify the recieved code through /verify . It contains two params i.e. phonenumber and code"
+      phone: "Send verification code through /send . It contains param phonenumber",
+      verify: "Verify the recieved code through /check . It contains two params i.e. phonenumber and code"
     }
   })
 })
-
-
-
 
 const axios = require('axios');
 const qs = require('qs');
@@ -78,6 +75,7 @@ app.get('/check', (req, res) => {
     axios(config)
     .then(function (response) {
       console.log('All is OK:', JSON.stringify(response.data));
+      res.status(200).send({message: "The code is approved", phonenumber: req.query.phonenumber, code: req.query.code})
     })
     .catch(function (error) {
       console.log('Error:', error);
@@ -88,7 +86,5 @@ app.get('/check', (req, res) => {
 })
 
 app.listen(port,() => {
-	// createService();
 	console.log(`The app has been started on port: ${port}`)
-  // console.log('\nClient:', client);
 });
