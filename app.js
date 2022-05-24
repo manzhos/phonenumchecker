@@ -1,13 +1,19 @@
 require('dotenv').config();
 
 const express = require('express')
-const app = express()
+const app     = express()
+const cors    = require('cors')
 
 const port = process.env.PORT
 // const accountSid = process.env.TWILIO_ACCOUNT_SID
 // const serviceSid = process.env.TWILIO_SERVICE_SID
 // const authToken  = process.env.TWILIO_AUTH_TOKEN
 // const client     = require('twilio')(accountSid, authToken)
+
+app.use(cors({
+  // origin: "https://laralab.manzhos.cz/"
+  origin: "*"
+}))
 
 app.get('/', (req, res)=>{
   res.status(200).send({
@@ -33,13 +39,7 @@ app.get('/send', (req, res) => {
     url: 'https://verify.twilio.com/v2/Services/VAdc72f78d20a46d183be362212e912770/Verifications',
     headers: {
       'Authorization': 'Basic QUNhMDhhOGNlNGFhMjI1ZjQ5NDRlMTIzZDg0OWVlNWZiZjo5MTc1Y2UxZDgxZWJiMTQ4NjY0NWI0NDk2MTU3Mjg0Yg==',
-      'Content-Type': 'application/x-www-form-urlencoded',
-
-      // 'Access-Control-Allow-Credentials':true,
-      // 'Access-Control-Allow-Origin':     'https://laralab.manzhos.cz/',
-      // another common pattern
-      // 'Access-Control-Allow-Methods':'GET,OPTIONS,PATCH,DELETE,POST,PUT',
-      // 'Access-Control-Allow-Headers':'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+      'Content-Type': 'application/x-www-form-urlencoded'
     },
     data : data
   };
