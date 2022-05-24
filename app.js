@@ -35,12 +35,11 @@ app.get('/send', (req, res) => {
       'Authorization': 'Basic QUNhMDhhOGNlNGFhMjI1ZjQ5NDRlMTIzZDg0OWVlNWZiZjo5MTc1Y2UxZDgxZWJiMTQ4NjY0NWI0NDk2MTU3Mjg0Yg==',
       'Content-Type': 'application/x-www-form-urlencoded',
 
-      'Access-Control-Allow-Credentials':true,
-      'Access-Control-Allow-Origin':     'https://laralab.manzhos.cz/',
+      // 'Access-Control-Allow-Credentials':true,
+      // 'Access-Control-Allow-Origin':     'https://laralab.manzhos.cz/',
       // another common pattern
-      // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
-      'Access-Control-Allow-Methods':'GET,OPTIONS,PATCH,DELETE,POST,PUT',
-      'Access-Control-Allow-Headers':'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+      // 'Access-Control-Allow-Methods':'GET,OPTIONS,PATCH,DELETE,POST,PUT',
+      // 'Access-Control-Allow-Headers':'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
     },
     data : data
   };
