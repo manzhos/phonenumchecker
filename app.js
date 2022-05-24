@@ -50,10 +50,10 @@ app.get('/send', (req, res) => {
     .then(function (response) {
       console.log('All is OK:', JSON.stringify(response.data));
 
-      res.header("Access-Control-Allow-Credentials", "true")
+      // res.header("Access-Control-Allow-Credentials", "true")
       res.header("Access-Control-Allow-Origin", "*")
-      res.header("Access-Control-Allow-Methods", "GET,OPTIONS,PATCH,DELETE,POST,PUT")
-      res.header("Access-Control-Allow-Headers", "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version")
+      // res.header("Access-Control-Allow-Methods", "GET,OPTIONS,PATCH,DELETE,POST,PUT")
+      // res.header("Access-Control-Allow-Headers", "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version")
 
       res.send(response.data)
       res.status(200).send({message: "The code is sent", phonenumber: req.query.phonenumber})
