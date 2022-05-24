@@ -30,6 +30,7 @@ const qs = require('qs');
 
 // Send Endpoint
 app.get('/send', (req, res) => {
+  // prerare url & data
   let data = qs.stringify({
     'To': '+'+req.query.phonenumber,
     'Channel': 'sms'
@@ -43,12 +44,19 @@ app.get('/send', (req, res) => {
     },
     data : data
   };
-
+  // send request
   if (req.query.phonenumber) {
     console.log(`The code to phone +${req.query.phonenumber} is sending`);
     axios(config)
     .then(function (response) {
       console.log('All is OK:', JSON.stringify(response.data));
+      res.header(
+        "Access-Control-Allow-Credentials", "true",
+        "Access-Control-Allow-Origin", "*",
+        "Access-Control-Allow-Methods", "GET,OPTIONS,PATCH,DELETE,POST,PUT",
+        "Access-Control-Allow-Headers", "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
+      );
+      res.send(response.data)
       res.status(200).send({message: "The code is sent", phonenumber: req.query.phonenumber})
     })
     .catch(function (error) {
@@ -81,6 +89,12 @@ app.get('/check', (req, res) => {
     axios(config)
     .then(function (response) {
       console.log('All is OK:', JSON.stringify(response.data));
+      res.header(
+        "Access-Control-Allow-Credentials", "true",
+        "Access-Control-Allow-Origin", "*",
+        "Access-Control-Allow-Methods", "GET,OPTIONS,PATCH,DELETE,POST,PUT",
+        "Access-Control-Allow-Headers", "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
+      );
       res.status(200).send({message: "The code is approved", phonenumber: req.query.phonenumber, code: req.query.code})
     })
     .catch(function (error) {
