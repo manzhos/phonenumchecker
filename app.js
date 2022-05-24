@@ -19,8 +19,10 @@ app.get('/', (req, res)=>{
   })
 })
 
-const axios = require('axios');
-const qs = require('qs');
+const axios = require('axios')
+const qs = require('qs')
+
+app.use('/api/utils', require('./api/utils.js'))
 
 // Send Endpoint
 app.get('/send', (req, res) => {
@@ -28,7 +30,7 @@ app.get('/send', (req, res) => {
   let data = qs.stringify({
     'To': '+'+req.query.phonenumber,
     'Channel': 'sms'
-  });
+  })
   const config = {
     method: 'post',
     url: 'https://verify.twilio.com/v2/Services/VAdc72f78d20a46d183be362212e912770/Verifications',
@@ -37,7 +39,7 @@ app.get('/send', (req, res) => {
       'Content-Type': 'application/x-www-form-urlencoded'
     },
     data : data
-  };
+  }
   // send request
   if (req.query.phonenumber) {
     console.log(`The code to phone +${req.query.phonenumber} is sending`)
@@ -55,7 +57,7 @@ app.get('/send', (req, res) => {
     })
     .catch(function (error) {
       console.log('Error:', error)
-    });
+    })
   } else {
     res.status(400).send({message: "Wrong phone number :(", phonenumber: req.query.phonenumber})
   }
@@ -67,7 +69,7 @@ app.get('/check', (req, res) => {
     'To': '+'+req.query.phonenumber,
     'Code': req.query.code,
     'Channel': 'sms'
-  });
+  })
   const config = {
     method: 'post',
     url: 'https://verify.twilio.com/v2/Services/VAdc72f78d20a46d183be362212e912770/VerificationCheck',
@@ -76,7 +78,7 @@ app.get('/check', (req, res) => {
       'Content-Type': 'application/x-www-form-urlencoded'
     },
     data : data
-  };
+  }
 
   if (req.query.phonenumber && req.query.code && (req.query.code).length === 6) {
     console.log(`Verifing the phone +${req.query.phonenumber} with code ${req.query.code}`)
@@ -88,7 +90,7 @@ app.get('/check', (req, res) => {
     })
     .catch(function (error) {
       console.log('Error:', error)
-    });
+    })
   } else {
     res.status(400).send({ message: "Wrong phone number or code :(", phonenumber: req.query.phonenumber, data })
   }
