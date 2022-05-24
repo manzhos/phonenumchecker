@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const express = require('express')
 const app     = express()
-const cors    = require('cors')
+// const cors    = require('cors')
 
 const port = process.env.PORT
 // const accountSid = process.env.TWILIO_ACCOUNT_SID
@@ -10,10 +10,9 @@ const port = process.env.PORT
 // const authToken  = process.env.TWILIO_AUTH_TOKEN
 // const client     = require('twilio')(accountSid, authToken)
 
-app.use(cors({
-  // origin: "https://laralab.manzhos.cz/"
-  origin: "*"
-}))
+// app.use(cors({
+//   origin: "*"
+// }))
 
 app.get('/', (req, res)=>{
   res.status(200).send({
