@@ -45,21 +45,21 @@ app.get('/send', (req, res) => {
   };
   // send request
   if (req.query.phonenumber) {
-    console.log(`The code to phone +${req.query.phonenumber} is sending`);
+    console.log(`The code to phone +${req.query.phonenumber} is sending`)
     axios(config)
     .then(function (response) {
       console.log('All is OK:', JSON.stringify(response.data));
 
-      // res.header("Access-Control-Allow-Credentials", "true")
-      res.header("Access-Control-Allow-Origin", "*")
-      // res.header("Access-Control-Allow-Methods", "GET,OPTIONS,PATCH,DELETE,POST,PUT")
-      // res.header("Access-Control-Allow-Headers", "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version")
+      res.setHeader("Access-Control-Allow-Credentials", "true")
+      res.setHeader("Access-Control-Allow-Origin", "*")
+      res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS,PATCH,DELETE,POST,PUT")
+      res.setHeader("Access-Control-Allow-Headers", "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version")
 
       res.send(response.data)
       res.status(200).send({message: "The code is sent", phonenumber: req.query.phonenumber})
     })
     .catch(function (error) {
-      console.log('Error:', error);
+      console.log('Error:', error)
     });
   } else {
     res.status(400).send({message: "Wrong phone number :(", phonenumber: req.query.phonenumber})
@@ -84,20 +84,15 @@ app.get('/check', (req, res) => {
   };
 
   if (req.query.phonenumber && req.query.code && (req.query.code).length === 6) {
-    console.log(`Verifing the phone +${req.query.phonenumber} with code ${req.query.code}`);
+    console.log(`Verifing the phone +${req.query.phonenumber} with code ${req.query.code}`)
     axios(config)
     .then(function (response) {
-      console.log('All is OK:', JSON.stringify(response.data));
-      res.header(
-        "Access-Control-Allow-Credentials", "true",
-        "Access-Control-Allow-Origin", "*",
-        "Access-Control-Allow-Methods", "GET,OPTIONS,PATCH,DELETE,POST,PUT",
-        "Access-Control-Allow-Headers", "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
-      );
+      console.log('All is OK:', JSON.stringify(response.data))
+      res.send(response.data)
       res.status(200).send({message: "The code is approved", phonenumber: req.query.phonenumber, code: req.query.code})
     })
     .catch(function (error) {
-      console.log('Error:', error);
+      console.log('Error:', error)
     });
   } else {
     res.status(400).send({ message: "Wrong phone number or code :(", phonenumber: req.query.phonenumber, data })
