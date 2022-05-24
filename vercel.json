@@ -9,7 +9,11 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "app.js"
+      "dest":"app.js"
+    },
+    {
+      "src": "/cors",
+      "dest":"/api/cors.js"
     }
   ],
   "headers": [
